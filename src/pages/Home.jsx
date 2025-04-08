@@ -1,11 +1,3 @@
-// import React from 'react';
-
-// const Home = () => (
-//   <div>
-//     <h1>Welcome to the Blockchain Voting DApp</h1>
-//     <p>This is a decentralized voting system built on Ethereum blockchain.</p>
-//   </div>
-// );
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useWeb3 } from '../hooks/useWeb3';
@@ -146,15 +138,13 @@ const Home = () => {
               <li>Results are transparently recorded and available to all</li>
             </ol>
             
-            <p>
-              This application ensures that:
-              <ul>
-                <li>Each voter can vote only once</li>
-                <li>Votes cannot be tampered with</li>
-                <li>The entire process is transparent</li>
-                <li>Results are immediately available and verifiable</li>
-              </ul>
-            </p>
+            <p>This application ensures that:</p>
+            <ul>
+              <li>Each voter can vote only once</li>
+              <li>Votes cannot be tampered with</li>
+              <li>The entire process is transparent</li>
+              <li>Results are immediately available and verifiable</li>
+            </ul>
           </div>
         </div>
       </div>

@@ -1,28 +1,41 @@
-import React, { useState } from 'react';
+// // src/components/ConnectWallet.js
+import React from 'react';
+import { useWeb3 } from '../hooks/useWeb3';
 
 const ConnectWallet = () => {
-  const [account, setAccount] = useState(null);
+  const { web3, account, loading, error } = useWeb3();
 
-  const connectWallet = async () => {
-    if (window.ethereum) {
-      try {
-        const accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
-        });
-        setAccount(accounts[0]);
-      } catch (error) {
-        console.error("User denied wallet connection", error);
+  const connectToMetaMask = async () => {
+    try {
+      if (window.ethereum) {
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        window.location.reload(); // Refresh to update state
+      } else {
+        alert('MetaMask is not installed. Please install MetaMask to use this application.');
       }
-    } else {
-      alert("MetaMask not detected. Please install MetaMask.");
+    } catch (error) {
+      console.error('Error connecting to MetaMask:', error);
+      alert('Failed to connect to MetaMask: ' + error.message);
     }
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <button onClick={connectWallet}>
-        {account ? `Connected: ${account.slice(0, 6)}...${account.slice(-4)}` : 'Connect Wallet'}
-      </button>
+    <div className="connect-wallet">
+      {!web3 ? (
+        <button className="btn btn-primary" onClick={connectToMetaMask}>Connect Wallet</button>
+      ) : account ? (
+        <div>
+          <button className="btn btn-outline-success" disabled>
+            Connected: {account.substring(0, 6)}...{account.substring(account.length - 4)}
+          </button>
+        </div>
+      ) : (
+        <button className="btn btn-warning" onClick={connectToMetaMask}>
+          Wallet Detected - Click to Connect
+        </button>
+      )}
+      
+      {error && <div className="alert alert-danger mt-2">{error}</div>}
     </div>
   );
 };
