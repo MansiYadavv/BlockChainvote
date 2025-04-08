@@ -4,7 +4,7 @@ module.exports = {
       development: {
         host: "127.0.0.1", // Ganache local
         port: 7545,        // Default Ganache GUI port
-        network_id: "*",   // Match any network
+        network_id: "5777",   // Match any network
       },
     },
     compilers: {

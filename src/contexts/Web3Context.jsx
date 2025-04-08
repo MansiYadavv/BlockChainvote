@@ -1,9 +1,8 @@
 // Improved Web3Context.js
 import React, { createContext, useState, useEffect, useRef } from 'react';
 import Web3 from 'web3';
+import electionaddress from "../constants/ElectionAddress";
 import ElectionContract from "../../artifacts/contracts/Election.sol/Election.json";
-
-
 export const Web3Context = createContext();
 
 export const Web3Provider = ({ children }) => {
